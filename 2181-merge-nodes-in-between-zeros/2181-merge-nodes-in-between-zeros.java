@@ -13,7 +13,6 @@ class Solution {
         ListNode newListNode = new ListNode(0);
         ListNode dummy = newListNode;
         ListNode newHead = newListNode;
-        // newHead = dummy;
         
         while(head != null && head.next != null){
             if(head.val == 0){
@@ -23,12 +22,9 @@ class Solution {
                     tempVal += head.val;
                     head = head.next;
                 }
-                // tempVal += head.val;
                 newHead.next = new ListNode(tempVal);
                 newHead = newHead.next;
             }
-            
-            // head = head.next;
         }
         return dummy.next; 
         
