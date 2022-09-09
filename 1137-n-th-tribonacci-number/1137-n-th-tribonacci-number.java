@@ -1,16 +1,17 @@
 class Solution {
     public int tribonacci(int n) {
-        int[] dp = new int[n+1];
-        for(int i=0; i<=n; i++) dp[i] = -1;
-        getVal(n, dp);
-        return dp[n];
+        // Tabulation
+        if(n<2) return n;
+        if(n==2) return 1;
+        int[] table = new int[n+1];
+        table[0]=0;
+        table[1]=1;
+        table[2]=1;
         
+        for (int i=3; i<=n;i++){
+            table[i] = table[i-1] + table[i-2] + table[i-3];
+        }
+        return table[n];
     }
-    private int getVal(int n, int[] dp){
-        if(n<=1) dp[n] = n;
-        if(n==2) dp[n] = 1;
-        if(dp[n] != -1) return dp[n];
-        dp[n] = getVal(n-1, dp) + getVal(n-2, dp) + getVal(n-3, dp);
-        return dp[n];
-    }
+    
 }
