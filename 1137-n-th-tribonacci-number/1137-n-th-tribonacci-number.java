@@ -1,17 +1,25 @@
 class Solution {
     public int tribonacci(int n) {
-        // Tabulation
-        if(n<2) return n;
+        // Memoization
+       if(n<2) return n;
         if(n==2) return 1;
-        int[] table = new int[n+1];
-        table[0]=0;
-        table[1]=1;
-        table[2]=1;
+        int[] memo = new int[n+1];
+        memo[0]=0;
+        memo[1]=1;
+        memo[2]=1;
         
         for (int i=3; i<=n;i++){
-            table[i] = table[i-1] + table[i-2] + table[i-3];
+            memo[i] = -1;
         }
-        return table[n];
+        return getTri(n, memo);
+    }
+    public int getTri(int n, int[] memo) {
+        
+        if(memo[n] != -1){
+            return memo[n];
+        }
+        memo[n] = getTri(n-1, memo) + getTri(n-2, memo) + getTri(n-3, memo);
+        return memo[n];
     }
     
 }
